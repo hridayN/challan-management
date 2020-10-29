@@ -1,0 +1,53 @@
+﻿USE [challanDB]
+GO
+
+/****** Object:  StoredProcedure [dbo].[CreateChallan]    Script Date: 29-10-2020 21:12:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- EXEC [dbo].[CreateChallan] '1234567890', 'DL-1AC-0002', 'rash driving', 2000, 'kashmeeri gate, delhi', '2020-10-29T15:20:34.368Z', '2020-10-29T15:19:34.368Z' 
+-- =============================================
+CREATE PROCEDURE [dbo].[CreateChallan] 
+	-- Add the parameters for the stored procedure here
+	 @MobileNumber	nchar(10)	= NULL
+	,@VehicleNumber	nchar(10)
+	,@Offense		varchar(100)
+	,@Amount		bigint
+	,@Place			varchar(100)
+	,@IssueDate		date
+	,@ExpiryDate	date
+AS
+BEGIN
+IF NOT EXISTS (SELECT * FROM dbo.Challan WHERE ((MobileNumber=@MobileNumber OR VehicleNumber=@VehicleNumber) AND Offence=@Offense AND IssueDate=@IssueDate))
+	BEGIN
+	INSERT INTO [dbo].[Challan] (
+	 [MobileNumber]	
+	,[VehicleNumber]	
+	,[Offence]		
+	,[Amount]		
+	,[OffencePlace]			
+	,[Status]		
+	,[IssueDate]		
+	,[ExpiryDate]	
+	) VALUES (
+	 @MobileNumber	
+	,@VehicleNumber	
+	,@Offense		
+	,@Amount		
+	,@Place			
+	,'Active'		
+	,GETDATE()		
+	,GETDATE() + 30	
+	)
+	END
+END
+GO
+
+

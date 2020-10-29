@@ -1,0 +1,26 @@
+﻿USE [challanDB]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GetChallan]    Script Date: 29-10-2020 21:12:59 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[GetChallan] 
+	-- Add the parameters for the stored procedure here
+	 @MobileNumber	nchar(10)	= NULL
+	,@VehicleNumber	nchar(10)
+AS
+BEGIN
+	SELECT * FROM Challan WHERE ([MobileNumber]=@MobileNumber OR [VehicleNumber]=@VehicleNumber) AND [Status]='Active';
+END
+GO
+
+

@@ -1,0 +1,28 @@
+﻿USE [challanDB]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SubmitChallan]    Script Date: 29-10-2020 21:13:37 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SubmitChallan] 
+	-- Add the parameters for the stored procedure here
+	 @ChallanId		bigint
+AS
+BEGIN
+	BEGIN
+		UPDATE [dbo].[Challan] SET [Status] = 'Closed' 
+		WHERE [ChallanId]=@ChallanId AND [Status]='Active';
+	END
+END
+GO
+
+

@@ -1,0 +1,28 @@
+﻿USE [challanDB]
+GO
+
+/****** Object:  Table [dbo].[Challan]    Script Date: 29-10-2020 21:08:52 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Challan](
+	[ChallanId] [bigint] IDENTITY(1,1) NOT NULL,
+	[MobileNumber] [nchar](10) NULL,
+	[VehicleNumber] [nchar](10) NULL,
+	[Offence] [varchar](100) NULL,
+	[Amount] [bigint] NULL,
+	[OffencePlace] [varchar](100) NULL,
+	[Status] [varchar](20) NULL,
+	[IssueDate] [date] NULL,
+	[ExpiryDate] [date] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ChallanId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
